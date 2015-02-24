@@ -8,5 +8,10 @@ function loaded(){
 
 function change_text(){
   //IDがmessageの要素のテキストを書き換え
-  $("#message").text("こんばんは");
+  $("#message").text("こんにちは");
+$("body").append("<p>おはよう</p>");
+$("body").append("<p>こんにちは</p>");
+$("body").append("<p>おやすみ</p>");
+
+$("#message").remove();
 }
