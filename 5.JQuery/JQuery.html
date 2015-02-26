@@ -4,10 +4,16 @@
     <meta charset="UTF-8" />
     <title>JavaScriptのサンプル</title>
     <script src="http://code.jquery.com/jquery-2.0.0.min.js"></script>
+   <!--<script src="test_script.js"></script>-->
   </head>
   <body>
-    <script src="test_script.js"></script>
+    <script>
+      localStorage.setItem("message", "こんにちはlocalStorage");
+      // messageというキーに保存した値を取得して表示
+     console.log(localStorage.getItem("message"));
+    </script>
+
     <p id="message">こんにちは</p>
-    <button>おす</button>
+      <button>おす</button>
   </body>
 </html>
