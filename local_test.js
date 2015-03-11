@@ -12,11 +12,15 @@ function loaded() {
 }
 
 // 入力された内容をローカルストレージに保存する
-function saveText() {
+function saveText(if(checktext(text.val())) {
   // 時刻をキーにして入力されたテキストを保存する
   var text = $("#formText");
   var time = new Date();
-  localStorage.setItem(time, text.val());
+}
+  var val = escapeText(text.val());
+
+  if(checkText(val)){
+  localStorage.setItem(time, escape(val));
   // テキストボックスを空にする
   text.val("");
 }
@@ -34,4 +38,32 @@ function showText() {
     html.push("<p>" + value + "</p>");
   }
   list.append(html.join(''));
+}
+// 文字をエスケープする
+function escapeText(text) {
+  return $("<div>").text(text).html();
+}
+
+// 入力チェックを行う
+function checkText(text) {
+  // 文字数が0または20以上は不可
+  if (0 === text.length || 20 < text.length) {
+    alert("文字数は1〜20字にしてください");
+    return false;
+  }
+
+  // すでに入力された値があれば不可
+  var length = localStorage.length;
+  for (var i = 0; i < length; i++) {
+    var key = localStorage.key(i);
+    var value = localStorage.getItem(key);
+    // 内容が一致するものがあるか比較
+    if (text === value) {
+      alert("同じ内容は避けてください");
+      return false;
+    }
+  }
+
+  // すべてのチェックを通過できれば可
+  return true;
 }
